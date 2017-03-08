@@ -39,6 +39,8 @@ app.post('/listen', function (req, res) {
 
         });
     });
+
+    setTimeout(function() { conn.close(); res.json({"status":"timedout"})}, 500);
     //setTimeout(function() { conn.close(); }, 500);
     console.log("Finished /listen");
   });
@@ -64,7 +66,7 @@ app.post('/speak',function(req,res){
       console.log(" [x] Sent msg:%s    key: %s", msg, key);
       res.json({"status":"OK"});
     });
-    // setTimeout(function() { conn.close()}, 500);
+     setTimeout(function() { conn.close(); res.json({"status":"timedout"})}, 500);
   });
   console.log("Finished /speak");
 });
