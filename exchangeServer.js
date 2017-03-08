@@ -33,15 +33,16 @@ app.post('/listen', function (req, res) {
             ch.bindQueue(q.queue, ex, keys[i]);
           }
           ch.consume(q.queue, function(msg) {
-            res.json({"msg": msg.content.toString()});
+            conn.close();
             console.log(" Success Consuming: [x] %s", msg.content.toString());
+            return res.json({"msg": msg.content.toString()});
           }, {noAck: false});
         });
     });
-    setTimeout(function() {
-      conn.close();
-      return res.json({"msg":"timedout error"});
-    }, 10000);
+    // setTimeout(function() {
+    //   conn.close();
+    //   return res.json({"msg":"timedout error"});
+    // }, 10000);
     console.log("Finished /listen");
   });
 
