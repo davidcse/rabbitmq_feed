@@ -79,8 +79,8 @@ app.post('/speak',function(req,res){
 
 
 // Starts the server
-var server = app.listen(8080, function () {
+var server = app.listen(80, function () {
   var host = server.address().address
   var port = server.address().port
   console.log("RabbitMQ server is listening at http://%s:%s", host, port)
-})
+});
