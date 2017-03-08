@@ -31,12 +31,19 @@ app.post('/listen', function (req, res) {
       for(var i=0; i< keys.length; i++){
         ch.assertQueue(keys[i], {exclusive: true}, function(err, q) {
           console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", keys[i]);
-          ch.bindQueue(keys[i], ex, '');
-          console.log("bound to queue : %s",q.queue);
-          ch.consume(keys[i], function(msg) {
-            console.log(" [x] %s", msg.content.toString());
-            res.json({"msg":msg.content.toString()});
-          }, {noAck: true});
+          ch.bindQueue(keys[i], ex, function(err, data){
+            if(err){
+              ch.unbindQueue(keys[i], ex, function(err,data){
+                return res.json({"status":"ERROR","msg":"Failed binding to the queue"});
+              }])
+              return
+            }
+            console.log("bound to queue : %s",q.queue);
+            ch.consume(keys[i], function(msg) {
+              console.log(" [x] %s", msg.content.toString());
+              res.json({"msg":msg.content.toString()});
+            }, {noAck: true});
+          });
         });
       }
     });
