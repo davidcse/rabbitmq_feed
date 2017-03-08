@@ -34,13 +34,14 @@ app.post('/listen', function (req, res) {
           }
           ch.consume(q.queue, function(msg) {
             console.log(" Success Consuming: [x] %s", msg.content.toString());
-            return res.json({"msg":msg.content.toString()});
+            return res.json({"msg": msg.content.toString()});
           }, {noAck: true});
-
         });
     });
-
-    //setTimeout(function() { conn.close(); }, 500);
+    setTimeout(function() {
+      conn.close();
+      return res.json({"msg":"timedout error"});
+     }, 1000);
     console.log("Finished /listen");
   });
 
