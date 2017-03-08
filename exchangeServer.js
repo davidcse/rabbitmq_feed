@@ -40,7 +40,7 @@ app.post('/listen', function (req, res) {
         });
     });
 
-    setTimeout(function() { conn.close(); res.json({"status":"timedout"})}, 500);
+    setTimeout(function() { conn.close(); res.json({"msg":"timedout"})}, 500);
     //setTimeout(function() { conn.close(); }, 500);
     console.log("Finished /listen");
   });
