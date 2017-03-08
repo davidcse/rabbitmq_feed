@@ -49,11 +49,11 @@ app.post('/listen', function (req, res) {
 
 app.get('/speak',function(req,res){
   console.log("speak GET works");
-  res.end({"status":"OK","message":"Please use POST request instead"});
+  res.json({"status":"OK","message":"Please use POST request instead"});
 })
 app.get('/listen',function(req,res){
   console.log("lisen GET works");
-  res.end({"status":"OK","message":"Please use POST request instead"});
+  res.json({"status":"OK","message":"Please use POST request instead"});
 })
 
 app.post('/speak',function(req,res){
