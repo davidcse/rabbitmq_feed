@@ -30,10 +30,10 @@ app.post('/listen', function (req, res) {
       ch.assertExchange(ex, 'direct', {durable: false});
       for(var i=0; i< keys.length; i++){
         ch.assertQueue(keys[i], {exclusive: true}, function(err, q) {
-          console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", q.queue);
-          ch.bindQueue(q.queue, ex, '');
+          console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", keys[i]);
+          ch.bindQueue(keys[i], ex, '');
           console.log("bound to queue : %s",q.queue);
-          ch.consume(q.queue, function(msg) {
+          ch.consume(keys[i], function(msg) {
             console.log(" [x] %s", msg.content.toString());
             res.json({"msg":msg.content.toString()});
           }, {noAck: true});
