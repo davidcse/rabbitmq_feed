@@ -67,7 +67,7 @@ app.post('/speak',function(req,res){
       console.log(" [x] Sent msg:%s    key: %s", msg, key);
       return res.json({"status":"OK"});
     });
-    setTimeout(function() { conn.close(); return res.json({"status":"timedout"})}, 500);
+    //setTimeout(function() { conn.close(); return res.json({"status":"timedout"})}, 500);
   });
   console.log("Finished /speak");
 });
