@@ -1,0 +1,16 @@
+{
+  "name": "rabbitmq_feed",
+  "version": "1.0.0",
+  "description": "Listen Speak endpoints",
+  "main": "exchangeServer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "David Lin",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^0.5.1",
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2"
+  }
+}
