@@ -33,7 +33,7 @@ app.post('/listen', function (req, res) {
             ch.bindQueue(q.queue, ex, keys[i]);
           }
           ch.consume(q.queue, function(msg) {
-            console.log(" [x] %s", msg.content.toString());
+            console.log(" Success Consuming: [x] %s", msg.content.toString());
             return res.json({"msg":msg.content.toString()});
           }, {noAck: true});
 
@@ -64,11 +64,13 @@ app.post('/speak',function(req,res){
       console.log(" [x] Sent msg:%s    key: %s", msg, key);
       res.json({"status":"OK"});
     });
-    setTimeout(function() { conn.close()}, 500);
+    // setTimeout(function() { conn.close()}, 500);
   });
   console.log("Finished /speak");
 });
 
+
+/*
 
 app.get('/speak',function(req,res){
   console.log("speak works");
@@ -131,7 +133,7 @@ app.get('/listen',function(req,res){
 });
 
 
-
+*/
 
 
 // Starts the server
