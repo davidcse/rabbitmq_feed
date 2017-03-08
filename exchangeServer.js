@@ -41,7 +41,7 @@ app.post('/listen', function (req, res) {
     setTimeout(function() {
       conn.close();
       return res.json({"msg":"timedout error"});
-     }, 1000);
+    }, 10000);
     console.log("Finished /listen");
   });
 
